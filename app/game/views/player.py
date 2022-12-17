@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from ..models.player import Player, PlayerSerializer
 from ..models.character import Character
 from ..models.match import Match
+from ..models.body import Body
+from ..models.bag import Bag
 
 
 class BaseViewSet(APIView):
@@ -22,6 +24,8 @@ class PlayerViewSet(BaseViewSet):
         lives = params.get('lives')
         is_alive = params.get('is_alive')
         user_id = params.get('user_id')
+        body_id = params.get('body_id')
+        bag_id = params.get('bag_id')
         order_by = params.get('order_by', '-id')
 
         players = Player.objects
@@ -56,24 +60,49 @@ class PlayerViewSet(BaseViewSet):
         lives = data.get('lives')
         is_alive = data.get('is_alive')
         user_id = data.get('user_id')
+        body_id = data.get('body_id')
+        bag_id = data.get('bag_id')
 
-        try:
-            character = Character.objects.get(id=character_id)
-        except ObjectDoesNotExist:
-            response = {"message": f"Character {character_id} does not exist"}
-            return Response(response, 400)
+        character = character_id
+        match = match_id
+        user = user_id
+        body = body_id
+        bag = bag_id
 
-        try:
-            match = Match.objects.get(id=match_id)
-        except ObjectDoesNotExist:
-            response = {"message": f"Match {match_id} does not exist"}
-            return Response(response, 400)
+        if character_id:
+            try:
+                character = Character.objects.get(id=character_id)
+            except ObjectDoesNotExist:
+                response = {"message": f"Character {character_id} does not exist"}
+                return Response(response, 400)
 
-        try:
-            user = User.objects.get(id=user_id)
-        except ObjectDoesNotExist:
-            response = {"message": f"User {user_id} does not exist"}
-            return Response(response, 400)
+        if match_id:
+            try:
+                match = Match.objects.get(id=match_id)
+            except ObjectDoesNotExist:
+                response = {"message": f"Match {match_id} does not exist"}
+                return Response(response, 400)
+
+        if user_id:
+            try:
+                user = User.objects.get(id=user_id)
+            except ObjectDoesNotExist:
+                response = {"message": f"User {user_id} does not exist"}
+                return Response(response, 400)
+
+        if body_id:
+            try:
+                body = Body.objects.get(id=user_id)
+            except ObjectDoesNotExist:
+                response = {"message": f"Body {body_id} does not exist"}
+                return Response(response, 400)
+
+        if bag_id:
+            try:
+                bag = Bag.objects.get(id=user_id)
+            except ObjectDoesNotExist:
+                response = {"message": f"Bag {bag_id} does not exist"}
+                return Response(response, 400)
 
         player = Player()
         player.character = character
@@ -82,6 +111,9 @@ class PlayerViewSet(BaseViewSet):
         player.score = score
         player.lives = lives
         player.is_alive = is_alive
+        player.user = user
+        player.body = body
+        player.bag = bag
         player.save()
 
         response = PlayerSerializer(player).data
@@ -110,6 +142,10 @@ class PlayerViewSet(BaseViewSet):
             match_id = None
         if not User.objects.filter(id=character_id).exists():
             user_id = None
+        if not Body.objects.filter(id=character_id).exists():
+            body_id = None
+        if not Bag.objects.filter(id=character_id).exists():
+            bag_id = None
 
         player.character_id = character_id or player.character_id
         player.match_id = match_id or player.match_id
@@ -117,6 +153,9 @@ class PlayerViewSet(BaseViewSet):
         player.score = score or player.score
         player.lives = lives or player.score
         player.is_alive = is_alive or player.is_alive
+        player.user_id = user_id or player.user_id
+        player.body_id = body_id or player.body_id
+        player.bag_id = bag_id or player.bag_id
         player.save()
 
         response = PlayerSerializer(player).data

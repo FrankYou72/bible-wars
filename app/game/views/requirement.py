@@ -44,11 +44,14 @@ class RequirementViewSet(BaseViewSet):
         attribute = data.get('attribute')
         required = data.get('required')
 
-        try:
-            character_class = CharacterClass.objects.get(id=character_class_id)
-        except ObjectDoesNotExist:
-            response = {"message": f"CharacterClass {character_class_id} does not exist"}
-            return Response(response, 400)
+        character_class = character_class_id
+
+        if character_class_id:
+            try:
+                character_class = CharacterClass.objects.get(id=character_class_id)
+            except ObjectDoesNotExist:
+                response = {"message": f"CharacterClass {character_class_id} does not exist"}
+                return Response(response, 400)
 
         requirement = Requirement()
         requirement.character_class = character_class

@@ -35,11 +35,14 @@ class OriginViewSet(BaseViewSet):
         name = data.get('name')
         consequence_id = data.get('consequence_id')
 
-        try:
-            consequence = Consequence.objects.get(id=consequence_id)
-        except ObjectDoesNotExist:
-            response = {"message": f"Consequence {consequence_id} does not exist"}
-            return Response(response, 400)
+        if consequence_id:
+            try:
+                consequence = Consequence.objects.get(id=consequence_id)
+            except ObjectDoesNotExist:
+                response = {"message": f"Consequence {consequence_id} does not exist"}
+                return Response(response, 400)
+        else:
+            consequence = None
 
         origin = Origin()
         origin.name = name
