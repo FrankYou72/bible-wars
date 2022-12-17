@@ -1,7 +1,7 @@
 from django.db.models import Model, CharField, ForeignKey, PROTECT
 from rest_framework import serializers
 
-from .consequence import Consequence
+from .consequence import Consequence, ConsequenceSerializer
 
 
 class Origin(Model):
@@ -20,4 +20,5 @@ class Origin(Model):
 
 class OriginSerializer(serializers.Serializer):
     model = Origin
+    consequence = ConsequenceSerializer()
     fields = '__all__'

@@ -1,7 +1,7 @@
 from django.db.models import Model, CharField, IntegerField, TextField, ForeignKey, PROTECT
 from rest_framework import serializers
 
-from .consequence import Consequence
+from .consequence import Consequence, ConsequenceSerializer
 
 
 class Item(Model):
@@ -26,4 +26,5 @@ class Item(Model):
 
 class ItemSerializer(serializers.Serializer):
     model = Item
+    consequence = ConsequenceSerializer()
     fields = '__all__'

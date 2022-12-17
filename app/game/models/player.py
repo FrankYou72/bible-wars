@@ -2,10 +2,10 @@ from django.db.models import Model, ForeignKey, IntegerField, BooleanField, PROT
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-from .character import Character
-from .match import Match
-from .bag import Bag
-from .body import Body
+from .character import Character, CharacterSerializer
+from .match import Match, MatchSerializer
+from .bag import Bag, BagSerializer
+from .body import Body, BodySerializer
 
 
 class Player(Model):
@@ -31,4 +31,7 @@ class Player(Model):
 
 class PlayerSerializer(serializers.Serializer):
     model = Player
+    character = CharacterSerializer()
+    match = MatchSerializer()
+    body = BodySerializer()
     fields = '__all__'
