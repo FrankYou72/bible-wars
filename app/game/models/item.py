@@ -11,6 +11,8 @@ class Item(Model):
     range = IntegerField(null=True)
     rarity = CharField(max_length=1, null=True)
     consequence = ForeignKey(Consequence, null=True, on_delete=PROTECT)
+    span = IntegerField(null=True)
+
 
 
     class Meta:

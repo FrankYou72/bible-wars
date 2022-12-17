@@ -4,6 +4,8 @@ from rest_framework import serializers
 
 from .character import Character
 from .match import Match
+from .bag import Bag
+from .body import Body
 
 
 class Player(Model):
@@ -14,6 +16,8 @@ class Player(Model):
     lives = IntegerField(null=True)
     is_alive = BooleanField(null=True)
     user = ForeignKey(User, null=True, on_delete=PROTECT)
+    bag = ForeignKey(Bag, null=True, on_delete=PROTECT)
+    body = ForeignKey(Body, null=True, on_delete=PROTECT)
 
 
     class Meta:

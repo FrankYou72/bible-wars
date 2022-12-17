@@ -19,6 +19,7 @@ class ItemViewSet(BaseViewSet):
         _type = params.get('type')
         _range = params.get('range')
         rarity = params.get('rarity')
+        span = params.get('span')
         order_by = params.get('order_by', '-id')
 
         items = Item.objects
@@ -35,6 +36,8 @@ class ItemViewSet(BaseViewSet):
             items = items.filter(range=_range)
         if rarity:
             items = items.filter(rarity=rarity)
+        if span:
+            items = items.filter(span=span)
 
         items = items.order_by(order_by)
 
@@ -50,6 +53,7 @@ class ItemViewSet(BaseViewSet):
         _type = data.get('type')
         _range = data.get('range')
         rarity = data.get('rarity')
+        span = data.get('span')
         order_by = data.get('order_by', '-id')
 
         try:
@@ -65,6 +69,7 @@ class ItemViewSet(BaseViewSet):
         item.range = _range
         item.rarity = rarity
         item.consequence = consequence
+        item.span
         item.save()
 
         response = ItemSerializer(item).data
@@ -79,6 +84,7 @@ class ItemViewSet(BaseViewSet):
         _type = data.get('type')
         _range = data.get('range')
         rarity = data.get('rarity')
+        span = data.get('span')
 
         try:
             item = Item.objects.get(id=item_id)
@@ -95,6 +101,7 @@ class ItemViewSet(BaseViewSet):
         item.range = _range or item.range
         item.rarity = rarity or item.rarity
         item.consequence_id = consequence_id or item.consequence_id
+        item.span = span or item.span
         item.save()
 
         response = ItemSerializer(item).data
