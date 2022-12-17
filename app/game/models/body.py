@@ -11,7 +11,7 @@ class Body(Model):
 
 
     class Meta:
-        #db_table = '"game"."body"'
+        db_table = '"game"."body"'
         managed = True
 
     def __str__(self):
