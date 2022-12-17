@@ -1,4 +1,5 @@
 from django.db.models import Model, CharField, TextField, BooleanField, ForeignKey, PROTECT
+from rest_framework import serializers
 
 from .consequence import Consequence
 from .requirement import Requirement
@@ -18,3 +19,9 @@ class Event(Model):
 
     def __str__(self):
         return self.name
+
+
+
+class EventSerializer(serializers.Serializer):
+    model = Event
+    fields = '__all__'

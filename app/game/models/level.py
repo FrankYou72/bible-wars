@@ -1,4 +1,5 @@
 from django.db.models import Model, CharField, IntegerField, ForeignKey, PROTECT
+from rest_framework import serializers
 
 from .character import Character
 
@@ -15,3 +16,9 @@ class Level(Model):
 
     def __str__(self):
         return self.slate
+
+
+
+class LevelSerializer(serializers.Serializer):
+    model = Level
+    fields = '__all__'

@@ -1,5 +1,6 @@
-from django.db.models import Model, CharField, TextField, ForeignKey, IntegerField, BooleanField, PROTECT
+from django.db.models import Model, ForeignKey, IntegerField, BooleanField, PROTECT
 from django.contrib.auth.models import User
+from rest_framework import serializers
 
 from .character import Character
 from .match import Match
@@ -21,3 +22,9 @@ class Player(Model):
 
     def __str__(self):
         return self.user
+
+
+
+class PlayerSerializer(serializers.Serializer):
+    model = Player
+    fields = '__all__'

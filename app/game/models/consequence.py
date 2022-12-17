@@ -1,4 +1,5 @@
 from django.db.models import Model, CharField, IntegerField
+from rest_framework import serializers
 
 
 
@@ -16,3 +17,9 @@ class Consequence(Model):
 
     def __str__(self):
         return f'{self.attribute}: {self.operation} {self.factor}'
+
+
+
+class ConsequenceSerializer(serializers.Serializer):
+    model = Consequence
+    fields = '__all__'

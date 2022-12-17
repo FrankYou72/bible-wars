@@ -1,4 +1,5 @@
 from django.db.models import Model, CharField, IntegerField, ForeignKey, PROTECT
+from rest_framework import serializers
 
 from .character_class import CharacterClass
 
@@ -16,3 +17,9 @@ class Requirement(Model):
 
     def __str__(self):
         return f'{self.attribute}: {self.required}'
+
+
+
+class RequirementSerializer(serializers.Serializer):
+    model = Requirement
+    fields = '__all__'

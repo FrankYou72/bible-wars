@@ -1,4 +1,5 @@
 from django.db.models import Model, CharField, IntegerField, TextField, BooleanField
+from rest_framework import serializers
 
 
 class Character(Model):
@@ -20,4 +21,9 @@ class Character(Model):
 
     def __str__(self):
         return self.name
-    
+
+
+
+class CharacterSerializer(serializers.Serializer):
+    model = Character
+    fields = '__all__'

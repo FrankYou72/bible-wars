@@ -1,4 +1,5 @@
 from django.db.models import Model, CharField, ForeignKey, PROTECT
+from rest_framework import serializers
 
 from .consequence import Consequence
 
@@ -14,3 +15,9 @@ class CharacterClass(Model):
 
     def __str__(self):
         return self.name
+
+
+
+class CharacterClassSerializer(serializers.Serializer):
+    model = CharacterClass
+    fields = '__all__'

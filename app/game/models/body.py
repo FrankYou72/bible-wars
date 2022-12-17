@@ -1,5 +1,5 @@
 from django.db.models import Model, IntegerField
-
+from rest_framework import serializers
 
 
 class Body(Model):
@@ -16,3 +16,9 @@ class Body(Model):
 
     def __str__(self):
         return self.id
+
+
+
+class BodySerializer(serializers.Serializer):
+    model = Body
+    fields = '__all__'

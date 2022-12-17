@@ -1,4 +1,5 @@
-from django.db.models import Model, CharField, IntegerField, TextField, DateTimeField, BooleanField
+from django.db.models import Model, CharField, IntegerField, DateTimeField, BooleanField
+from rest_framework import serializers
 
 
 
@@ -16,3 +17,9 @@ class Match(Model):
 
     def __str__(self):
         return self.nick_name
+
+
+
+class MatchSerializer(serializers.Serializer):
+    model = Match
+    fields = '__all__'
