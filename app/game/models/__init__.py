@@ -1,6 +1,6 @@
 from .consequence import Consequence
 from .character import Character
-#from .body import Body
+from .body import Body
 from .item import Item
 from .event import Event
 from .card_type import CardType
@@ -10,3 +10,7 @@ from .match import Match
 from .origin import Origin
 from .player import Player
 from .requirement import Requirement
+from .arena import Arena
+from .bag_item import BagItem
+from .cell import Cell
+from .special_move import SpecialMove

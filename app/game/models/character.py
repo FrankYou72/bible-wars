@@ -14,6 +14,7 @@ class Character(Model):
     speed = IntegerField(null=True)
     alliance = CharField(max_length=64, null=True)
     is_minion = BooleanField(null=True)
+    playable = BooleanField(null=True)
 
     class Meta:
         db_table = '"game"."character"'
