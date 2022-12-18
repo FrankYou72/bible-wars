@@ -21,6 +21,9 @@ class Cell(Model):
     def __str__(self):
         return f'{self.column}{self.row}'
 
+    def is_vacant(self):
+        return bool(not self.player)
+
 
 
 class CellSerializer(serializers.Serializer):

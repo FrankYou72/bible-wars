@@ -47,12 +47,12 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.PROTECT, to='game.consequence'),
         ),
         migrations.AddField(
-            model_name='player',
+            model_name='player.py',
             name='character',
             field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.PROTECT, to='game.character'),
         ),
         migrations.AddField(
-            model_name='player',
+            model_name='player.py',
             name='match',
             field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.PROTECT, to='game.match'),
         ),

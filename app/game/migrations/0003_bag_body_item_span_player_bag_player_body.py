@@ -44,12 +44,12 @@ class Migration(migrations.Migration):
             field=models.IntegerField(null=True),
         ),
         migrations.AddField(
-            model_name='player',
+            model_name='player.py',
             name='bag',
             field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.PROTECT, to='game.bag'),
         ),
         migrations.AddField(
-            model_name='player',
+            model_name='player.py',
             name='body',
             field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.PROTECT, to='game.body'),
         ),

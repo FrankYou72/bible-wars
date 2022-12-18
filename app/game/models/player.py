@@ -18,6 +18,7 @@ class Player(Model):
     user = ForeignKey(User, null=True, on_delete=PROTECT)
     bag = ForeignKey(Bag, null=True, on_delete=PROTECT)
     body = ForeignKey(Body, null=True, on_delete=PROTECT)
+    hp = IntegerField(null=True)
 
 
     class Meta:
@@ -26,6 +27,16 @@ class Player(Model):
 
     def __str__(self):
         return self.user
+
+    def attack_power(self):
+        char_power = self.character.power
+        char_attack = self.character.attack
+
+        return char_power + char_attack
+
+    def defense_power(self):
+        return self.character.power + self.character.defense
+
 
 
 

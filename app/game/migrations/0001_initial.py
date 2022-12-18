@@ -162,7 +162,7 @@ class Migration(migrations.Migration):
                 ('user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.PROTECT, to=settings.AUTH_USER_MODEL)),
             ],
             options={
-                'db_table': '"game"."player"',
+                'db_table': '"game"."player.py"',
                 'managed': True,
             },
         ),

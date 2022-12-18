@@ -32,7 +32,7 @@ urlpatterns = [
     path('requirement', RequirementViewSet.as_view()),
     path('level', LevelViewSet.as_view()),
     path('match', MatchViewSet.as_view()),
-    path('player', PlayerViewSet.as_view()),
+    path('player.py', PlayerViewSet.as_view()),
     path('consequence', ConsequenceViewSet.as_view()),
     path('origin', OriginViewSet.as_view()),
     path('item', ItemViewSet.as_view()),

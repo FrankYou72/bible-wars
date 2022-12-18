@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 ('row', models.IntegerField(null=True)),
                 ('column', models.CharField(max_length=1, null=True)),
                 ('item', models.ForeignKey(null=True, on_delete=django.db.models.deletion.PROTECT, to='game.item')),
-                ('player', models.ForeignKey(null=True, on_delete=django.db.models.deletion.PROTECT, to='game.player')),
+                ('player.py', models.ForeignKey(null=True, on_delete=django.db.models.deletion.PROTECT, to='game.player.py')),
             ],
             options={
                 'db_table': '"game"."cell"',
