@@ -1,4 +1,4 @@
-from django.db.models import Model, CharField, IntegerField, TextField, BooleanField
+from django.db.models import Model, CharField, IntegerField, TextField, BooleanField, ImageField
 from rest_framework import serializers
 
 
@@ -15,6 +15,7 @@ class Character(Model):
     alliance = CharField(max_length=64, null=True)
     is_minion = BooleanField(null=True)
     playable = BooleanField(null=True)
+    image = ImageField(upload_to='game/image/', null=True)
 
     class Meta:
         db_table = '"game"."character"'
